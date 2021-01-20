@@ -1,0 +1,68 @@
+{% extends 'admin.base.html.twig' %}
+
+{% block title %}Hello Admin!
+{% endblock %}
+
+{% block body %}
+	{% include "admin.sidebar.html.twig" %}
+	<!-- Content Wrapper -->
+	<div
+		id="content-wrapper" class="d-flex flex-column">
+		<!-- Main Content -->
+		<div id="content">
+			{% include "admin.topbar.html.twig" %}
+			<div class="container-fluid">
+				<h1>À la une</h1>
+				{% for flash in app.flashes('success') %}
+					<p class="alert alert-success">{{flash}}</p>
+				{% endfor %}
+				<a href="{{path('admin_create_news')}}" class="btn btn-primary my-2">Ajouter</a>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Titre</th>
+							<th>Contenu</th>
+							<th>Date de création</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for new in news %}
+							<tr>
+								<td>{{new.id}}</td>
+								<td class="ellipsis maxWidth5">{{new.title}}</td>
+								<td class="ellipsis maxWidth5">{{new.content}}</td>
+								<td>{{new.createdAt|format_datetime('medium', 'short', locale='fr') }}</td>
+								<td>
+									<img src="{{ asset('uploads/images/news/' ~ new.image)}}" style="max-height:80px;max-width:80px;"/>
+								</td>
+								<td>
+									<a href="{{path('admin_edit_news', {id: new.id})}}" class="btn btn-info btn-sm">Modifier</a>
+								</td>
+								<td>
+									<a href="{{path('admin_delete_news', {id: new.id})}}" class="btn btn-danger btn-sm" onclick="return window.confirm(`êtes-vous sûr de vouloir supprimer cet article ?`)">Supprimer</a>
+								</td>
+							</tr>
+						{% else %}
+							<p class="text-center">Aucun article enregistré pour cette rubrique.</p>
+						{% endfor %}
+					</tbody>
+					<tfoot>
+						<tr>
+							{% if previous >= 0 %}
+								<td>
+									<a href="{{ path('admin_news', { offset: previous }) }}">Précedent</a>
+								</td>
+							{% endif %}
+							{% if next < news|length %}
+								<td>
+									<a href="{{ path('admin_news', { offset: next }) }}">Suivant</a>
+								</td>
+							{% endif %}
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.width100 {
+	width: 100% !important;
+	max-height: 500px !important;
+	height: 250px;
+}

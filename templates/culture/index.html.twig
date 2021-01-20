@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CultureController!
+{% endblock %}
+
+{% block body %}
+	<!-- ======= Intro Section ======= -->
+	<section id="intro">
+		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
+			<h1 class="mb-4 pb-0">
+				<span>Votre rubrique Culture</span>
+			</h1>
+		</div>
+	</section>
+	<!-- End Intro Section -->
+	<div class="container mt-2" data-aos="fade-up">
+		<main id="main">
+			<div class="row">
+				{% for culture in cultures %}
+					<div class="col-lg-4 col-md-6">
+						<div class="speaker" data-aos="fade-up" data-aos-delay="100">
+							<img src="{{ asset('uploads/images/cultures/' ~ culture.image) }}" alt="{{culture.title}}" class="img-fluid width100">
+							<div class="details">
+								<h3>
+									<a href="speaker-details.html">{{culture.title}}</a>
+								</h3>
+								<p class="ellipsis">{{culture.content}}</p>
+							</div>
+						</div>
+					</div>
+
+				{% endfor %}
+			</div>
+		</main>
+	</div>
+{% endblock %}
