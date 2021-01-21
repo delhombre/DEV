@@ -12,7 +12,7 @@
 				<span>MYRTFM</span>,<br>
 				Votre radio à porté de main</h1>
 			<p class="mb-4 pb-0">Reçevez toute l'actualité d'ici et d'ailleurs en un click.</p>
-			<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+			<a href="https://player.cloud.wowza.com/hosted/p2rjg22k/player.html" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
 			{# <a href="#about" class="about-btn scrollto">About The Event</a> #}
 		</div>
 	</section>
@@ -21,7 +21,7 @@
 	<main
 		id="main">
 
-		<!-- ======= Speakers Section ======= -->
+		<!-- ======= A la Une Section ======= -->
 		<section id="speakers">
 			<div class="container" data-aos="fade-up">
 				<div class="section-header">
@@ -50,7 +50,39 @@
 			</div>
 
 		</section>
-		<!-- End Speakers Section -->
+		<!-- End A la Une Section -->
+
+		<!-- ======= Politique Section ======= -->
+		{% if politiques|length > 0 %}
+			<section id="speakers">
+				<div class="container" data-aos="fade-up">
+					<div class="section-header">
+						<h2>Politique</h2>
+						<p>Toute l'actualité sur la politique</p>
+					</div>
+
+					<div class="row">
+						{% for politique in politiques %}
+							<div class="col-lg-4 col-md-6">
+								<div class="speaker" data-aos="fade-up" data-aos-delay="100">
+									<a href="{{path('politique_show', {id: politique.id})}}">
+										<img src="{{ asset('uploads/images/politiques/' ~ politique.image) }}" alt="{{politique.title}}" class="img-fluid width100">
+									</a>
+									<div class="details">
+										<h3>
+											<a href="{{path('politique_show', {id: politique.id})}}">{{politique.title}}</a>
+										</h3>
+										<p class="ellipsis">{{politique.content}}</p>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+
+			</section>
+		{% endif %}
+		<!-- End Politique Section -->
 
 		<!-- ======= Venue Section ======= -->
 		<section id="venue">
@@ -64,7 +96,7 @@
 
 				<div class="row no-gutters">
 					<div class="col-lg-6 venue-map">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0" allowfullscreen></iframe>
+						<iframe src="https://www.google.com/maps/d/embed?mid=115VduL-qCMhRvUV00Xppg8MKXSM&msa=0&hl=fr&ie=UTF8&t=m&ll=12.57601000000003%2C-4.394530999999988&spn=7.500826%2C9.338379&z=6&output=embed" frameborder="0" style="border:0" allowfullscreen></iframe>
 					</div>
 
 					<div class="col-lg-6 venue-info">
@@ -82,36 +114,105 @@
 		</section>
 		<!-- End Venue Section -->
 
-		<!-- ======= Hotels Section ======= -->
-		<section id="hotels" class="section-with-bg">
+		<!-- ======= Economie Section ======= -->
+		{% if economies|length > 0 %}
+			<section id="hotels" class="section-with-bg">
 
-			<div class="container" data-aos="fade-up">
-				<div class="section-header">
-					<h2>Economie</h2>
-					<p>Ne manquer rien de l'économie</p>
-				</div>
+				<div class="container" data-aos="fade-up">
+					<div class="section-header">
+						<h2>Economie</h2>
+						<p>Ne manquer rien de l'économie</p>
+					</div>
 
-				<div class="row" data-aos="fade-up" data-aos-delay="100">
-					{% for economie in economies %}
-						<div class="col-lg-4 col-md-6">
-							<div class="hotel">
-								<div class="hotel-img">
-									<a href="{{path('economie_show', {id: economie.id})}}">
-										<img src="{{ asset('uploads/images/economies/' ~ economie.image) }}" alt="{{economie.title}}" class="img-fluid">
-									</a>
+					<div class="row" data-aos="fade-up" data-aos-delay="100">
+						{% for economie in economies %}
+							<div class="col-lg-4 col-md-6">
+								<div class="hotel">
+									<div class="hotel-img">
+										<a href="{{path('economie_show', {id: economie.id})}}">
+											<img src="{{ asset('uploads/images/economies/' ~ economie.image) }}" alt="{{economie.title}}" class="img-fluid">
+										</a>
+									</div>
+									<h3>
+										<a href="{{path('economie_show', {id: economie.id})}}">{{economie.title}}</a>
+									</h3>
+									<p class="ellipsis">{{economie.content}}</p>
 								</div>
-								<h3>
-									<a href="{{path('economie_show', {id: economie.id})}}">{{economie.title}}</a>
-								</h3>
-								<p class="ellipsis">{{economie.content}}</p>
 							</div>
-						</div>
-					{% endfor %}
+						{% endfor %}
+					</div>
 				</div>
-			</div>
 
-		</section>
-		<!-- End Hotels Section -->
+			</section>
+		{% endif %}
+		<!-- End Economie Section -->
+
+		<!-- ======= Sports Section ======= -->
+		{% if sports|length > 0 %}
+			<section id="speakers">
+				<div class="container" data-aos="fade-up">
+					<div class="section-header">
+						<h2>Sport</h2>
+						<p>Football, Basketball, Pétanque...</p>
+					</div>
+
+					<div class="row">
+						{% for sport in sports %}
+							<div class="col-lg-4 col-md-6">
+								<div class="speaker" data-aos="fade-up" data-aos-delay="100">
+									<a href="{{path('sport_show', {id: sport.id})}}">
+										<img src="{{ asset('uploads/images/sports/' ~ sport.image) }}" alt="{{sport.title}}" class="img-fluid width100">
+									</a>
+									<div class="details">
+										<h3>
+											<a href="{{path('sport_show', {id: sport.id})}}">{{sport.title}}</a>
+										</h3>
+										<p class="ellipsis">{{sport.content}}</p>
+									</div>
+								</div>
+							</div>
+
+						{% endfor %}
+					</div>
+				</div>
+
+			</section>
+		{% endif %}
+		<!-- End Speakers Section -->
+
+		<!-- ======= Culture Section ======= -->
+		{% if cultures|length > 0 %}
+			<section id="hotels" class="section-with-bg">
+
+				<div class="container" data-aos="fade-up">
+					<div class="section-header">
+						<h2>Culture</h2>
+						<p>Cultivez vous grâce à nos articles</p>
+					</div>
+
+					<div class="row" data-aos="fade-up" data-aos-delay="100">
+						{% for culture in cultures %}
+							<div class="col-lg-4 col-md-6">
+								<div class="hotel">
+									<div class="hotel-img">
+										<a href="{{path('culture_show', {id: culture.id})}}">
+											<img src="{{ asset('uploads/images/cultures/' ~ culture.image) }}" alt="{{culture.title}}" class="img-fluid width100">
+										</a>
+									</div>
+									<h3>
+										<a href="{{path('culture_show', {id: culture.id})}}">{{culture.title}}</a>
+									</h3>
+									<p class="ellipsis">{{culture.content}}</p>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+
+			</section>
+		{% endif %}
+		<!-- End Culture Section -->
+
 
 		<!-- ======= Contact Section ======= -->
 		<section id="contact" class="section-bg">

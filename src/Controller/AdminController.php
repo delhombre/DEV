@@ -9,11 +9,13 @@ use App\Entity\News;
 use App\Entity\Politique;
 use App\Entity\Sante;
 use App\Entity\Sport;
+use App\Entity\User;
 use App\Form\CultureType;
 use App\Form\EconomieType;
 use App\Form\NewsType;
 use App\Form\PolitiqueType;
 use App\Form\SanteType;
+use App\Form\UserType;
 use App\Repository\CultureRepository;
 use App\Repository\EconomieRepository;
 use App\Repository\EnvironnementRepository;
@@ -30,6 +32,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminController extends AbstractController
 {
@@ -520,5 +523,44 @@ class AdminController extends AbstractController
         $this->em->flush();
 
         return $this->redirectToRoute("admin_sports");
+    }
+
+    /**
+     * @Route("/admin/changer-le-mot-de-passe", name="admin_change_password")
+     */
+    public function changePassword(UserPasswordEncoderInterface $encoder)
+    {
+        /**
+         * @var User
+         */
+        $user = $this->getUser();
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($this->request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $plainPassword = $this->request->request->all()["user"]["password"];
+            $user->setPassword($encoder->encodePassword($user, $plainPassword));
+
+            $this->em->persist($user);
+            $this->em->flush();
+
+            $this->addFlash("passwordchange", "Votre mot de passe a été mis à jour");
+            return $this->redirectToRoute("admin_change_password");
+        }
+
+        return $this->render('admin/change_password.html.twig', [
+            "form" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/encode", name="admin_encode")
+     */
+    public function encode(UserPasswordEncoderInterface $encoder)
+    {
+        $user = new User();
+
+        dd($encoder->encodePassword($user, "password7894561"));
     }
 }
