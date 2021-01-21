@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Culture;
 use App\Repository\CultureRepository;
 use App\Service\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +21,18 @@ class CultureController extends AbstractController
         return $this->render('culture/index.html.twig', [
             'cultures' => $cultures,
             'previous' => $paginator->previous($cultureRepository::PAGINATOR_PER_PAGE),
-            'next' => $paginator->next($cultures, $cultureRepository::PAGINATOR_PER_PAGE)
+            'next' => $paginator->next($cultures, $cultureRepository::PAGINATOR_PER_PAGE),
+            "current_menu" => "culture"
+        ]);
+    }
+
+    /**
+     * @Route("/cultures/{id}", name="culture_show")
+     */
+    public function show(Culture $culture)
+    {
+        return $this->render('culture/show.html.twig', [
+            "culture" => $culture
         ]);
     }
 }

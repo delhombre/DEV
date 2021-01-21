@@ -33,6 +33,11 @@ class EconomieRepository extends ServiceEntityRepository
         return new Paginator($query);
     }
 
+    public function findBySomeLimit(int $limit)
+    {
+        return $this->findBy([], ["id" => "DESC"], $limit);
+    }
+
     // /**
     //  * @return Economie[] Returns an array of Economie objects
     //  */

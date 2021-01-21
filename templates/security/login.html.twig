@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section id="intro" style="background-image:url(/micro.jpg)">
+		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
+			<form method="post">
+				{% if error %}
+					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				{% if app.user %}
+					<div class="mb-3">
+						Vous êtes connectés en tant que
+						{{ app.user.email }},
+						<a href="{{ path('app_logout') }}">Voulez-vous vous déconnecter ?</a>
+					</div>
+				{% endif %}
+
+				<h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+				<div class="form-group">
+					<label for="inputEmail" class="text-white">Email</label>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword" class="text-white">Mot de passe</label>
+					<input type="password" name="password" id="inputPassword" class="form-control" required>
+				</div>
+
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<div class="form-group">
+					<button class="btn btn-lg btn-primary fullwidth" type="submit">
+						Connexion
+					</button>
+				</div>
+			</form>
+		</div>
+	</section>
+
+
+{% endblock %}

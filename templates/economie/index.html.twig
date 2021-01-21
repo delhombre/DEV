@@ -5,7 +5,7 @@
 	<section id="intro">
 		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
 			<h1 class="mb-4 pb-0">
-				<span>Votre rubrique Culture</span>
+				<span>Votre rubrique Economie</span>
 			</h1>
 		</div>
 	</section>
@@ -13,17 +13,17 @@
 	<div class="container mt-2" data-aos="fade-up">
 		<main id="main">
 			<div class="row">
-				{% for culture in cultures %}
+				{% for economie in economies %}
 					<div class="col-lg-4 col-md-6">
 						<div class="speaker" data-aos="fade-up" data-aos-delay="100">
-							<a href="{{path('culture_show', {id:culture.id})}}">
-								<img src="{{ asset('uploads/images/cultures/' ~ culture.image) }}" alt="{{culture.title}}" class="img-fluid width100">
+							<a href="{{path('economie_show', {id:economie.id})}}">
+								<img src="{{ asset('uploads/images/economies/' ~ economie.image) }}" alt="{{economie.title}}" class="img-fluid width100">
 							</a>
 							<div class="details">
 								<h3>
-									<a href="{{path('culture_show', {id:culture.id})}}">{{culture.title}}</a>
+									<a href="{{path('economie_show', {id:economie.id})}}">{{economie.title}}</a>
 								</h3>
-								<p class="ellipsis">{{culture.content}}</p>
+								<p class="ellipsis">{{economie.content}}</p>
 							</div>
 						</div>
 					</div>
@@ -32,10 +32,10 @@
 				{% endfor %}
 			</div>
 			{% if previous >= 0 %}
-				<a href="{{ path('culture', { offset: previous }) }}">Précedent</a>
+				<a href="{{ path('economie', { offset: previous }) }}">Précedent</a>
 			{% endif %}
-			{% if next < cultures|length %}
-				<a href="{{ path('culture', { offset: next }) }}">Suivant</a>
+			{% if next < economies|length %}
+				<a href="{{ path('economie', { offset: next }) }}">Suivant</a>
 			{% endif %}
 		</main>
 	</div>

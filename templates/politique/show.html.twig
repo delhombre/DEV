@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<!-- ======= Intro Section ======= -->
+	<section id="intro" style="background-image:url({{ asset('uploads/images/politiques/' ~ politique.image) }})">
+		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
+			<h1 class="mb-4 pb-0">
+				{{politique.title}}
+			</h1>
+		</div>
+	</section>
+	<!-- End Intro Section -->
+	<div class="container mt-2" data-aos="fade-up">
+		<main id="main">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="speaker" data-aos="fade-up" data-aos-delay="100">
+						<img src="{{ asset('uploads/images/politiques/' ~ politique.image) }}" alt="{{politique.title}}" class="img-fluid" width="100%">
+						<div class="details">
+							<h3>
+								<h1 class="text-center">{{politique.title}}</h1>
+							</h3>
+							<p class="text-justify">{{politique.content}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+{% endblock %}

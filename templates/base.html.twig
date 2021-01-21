@@ -8,7 +8,7 @@
 		content="" name="keywords">
 
 		<!-- Favicons -->
-		<link href="/assets/img/favicon.png" rel="icon">
+		<link href="/assets/img/favicon.ico" rel="icon">
 		<link
 		href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -40,42 +40,41 @@
 			<div class="container">
 
 				<div id="logo" class="pull-left">
-					<!-- Uncomment below if you prefer to use a text logo -->
-					<!-- <h1><a href="#intro">The<span>Event</span></a></h1>-->
-						<a href="index.html" class="scrollto"> <img src="assets/img/logo.png" alt="" title=""></a>
+					<h1>
+						<a href="{{path('home')}}" class="scrollto">
+							MRTFM</a>
+					</h1>
 				</div>
 
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
-						<li class="menu-active">
-							<a href="index.html">Accueil</a>
+						<li class="{% if current_menu is defined and current_menu == 'home' %}menu-active{% endif %}">
+							<a href="{{path('home')}}">Accueil</a>
 						</li>
-						<li>
-							<a href="#about">Politique</a>
+						<li class="{% if current_menu is defined and current_menu == 'politique' %}menu-active{% endif %}">
+							<a href="{{path('politique')}}">Politique</a>
 						</li>
-						<li>
-							<a href="#speakers">Economie</a>
+						<li class="{% if current_menu is defined and current_menu == 'economie' %}menu-active{% endif %}">
+							<a href="{{path('economie')}}">Economie</a>
 						</li>
-						<li>
-							<a href="#schedule">Culture</a>
+						<li class="{% if current_menu is defined and current_menu == 'culture' %}menu-active{% endif %}">
+							<a href="{{path('culture')}}">Culture</a>
 						</li>
-						<li>
-							<a href="#venue">Sport</a>
+						<li class="{% if current_menu is defined and current_menu == 'sport' %}menu-active{% endif %}">
+							<a href="{{path('sport')}}">Sport</a>
 						</li>
-						<li>
-							<a href="#hotels">Environnement</a>
+						<li class="{% if current_menu is defined and current_menu == 'environnement' %}menu-active{% endif %}">
+							<a href="{{path('environnement')}}">Environnement</a>
 						</li>
-						<li>
-							<a href="#gallery">Santé</a>
-						</li>
-						<li>
-							<a href="#supporters">Sponsors</a>
-						</li>
-						<li>
-							<a href="#contact">Contact</a>
+						<li class="{% if current_menu is defined and current_menu == 'sante' %}menu-active{% endif %}">
+							<a href="{{path('sante')}}">Santé</a>
 						</li>
 						<li class="buy-tickets">
-							<a href="#buy-tickets">Connexion</a>
+							{% if app.user %}
+								<a href="{{path('app_logout')}}">Déconnexion</a>
+							{% else %}
+								<a href="{{path('app_login')}}">Connexion</a>
+							{% endif %}
 						</li>
 					</ul>
 				</nav>
@@ -93,74 +92,59 @@
 					<div class="row">
 
 						<div class="col-lg-3 col-md-6 footer-info">
-							<img src="assets/img/logo.png" alt="TheEvenet">
-							<p>In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.</p>
+							<h1>
+								<a href="{{path('home')}}" class="scrollto">
+									MRTFM</a>
+							</h1>
+							<p>Suivez le journal différemment</p>
 						</div>
 
 						<div class="col-lg-3 col-md-6 footer-links">
-							<h4>Useful Links</h4>
+							<h4>Liens</h4>
 							<ul>
 								<li>
 									<i class="fa fa-angle-right"></i>
-									<a href="#">Home</a>
+									<a href="{{path('home')}}">Accueil</a>
 								</li>
 								<li>
 									<i class="fa fa-angle-right"></i>
-									<a href="#">About us</a>
+									<a href="{{path('politique')}}">Politique</a>
 								</li>
 								<li>
 									<i class="fa fa-angle-right"></i>
-									<a href="#">Services</a>
+									<a href="{{path('economie')}}">Economie</a>
 								</li>
 								<li>
 									<i class="fa fa-angle-right"></i>
-									<a href="#">Terms of service</a>
+									<a href="{{path('culture')}}">Culture</a>
 								</li>
 								<li>
 									<i class="fa fa-angle-right"></i>
-									<a href="#">Privacy policy</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="col-lg-3 col-md-6 footer-links">
-							<h4>Useful Links</h4>
-							<ul>
-								<li>
-									<i class="fa fa-angle-right"></i>
-									<a href="#">Home</a>
+									<a href="{{path('sport')}}">Sport</a>
 								</li>
 								<li>
 									<i class="fa fa-angle-right"></i>
-									<a href="#">About us</a>
+									<a href="{{path('environnement')}}">Environnement</a>
 								</li>
 								<li>
 									<i class="fa fa-angle-right"></i>
-									<a href="#">Services</a>
-								</li>
-								<li>
-									<i class="fa fa-angle-right"></i>
-									<a href="#">Terms of service</a>
-								</li>
-								<li>
-									<i class="fa fa-angle-right"></i>
-									<a href="#">Privacy policy</a>
+									<a href="{{path('sante')}}">Santé</a>
 								</li>
 							</ul>
 						</div>
 
 						<div class="col-lg-3 col-md-6 footer-contact">
-							<h4>Contact Us</h4>
+							<h4>Contactez-nous</h4>
 							<p>
-								A108 Adam Street
+								Bamako Mali
 								<br>
-								New York, NY 535022<br>
-								United States
+								Quartier<br>
+								Rue
 								<br>
-								<strong>Phone:</strong>
-								+1 5589 55488 55<br>
+								<strong>Téléphone:</strong>
+								+223 00 00 00 00<br>
 								<strong>Email:</strong>
-								info@example.com<br>
+								myrtfm@email.com<br>
 							</p>
 
 							<div class="social-links">
@@ -190,18 +174,7 @@
 			<div class="container">
 				<div class="copyright">
 					&copy; Copyright
-					<strong>TheEvent</strong>. All Rights Reserved
-				</div>
-				<div
-					class="credits">
-					<!--
-																				        All the links in the footer should remain intact.
-																				        You can delete the links only if you purchased the pro version.
-																				        Licensing information: https://bootstrapmade.com/license/
-																				        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=TheEvent
-																				      -->
-					Designed by
-					<a href="https://bootstrapmade.com/">BootstrapMade</a>
+					<strong>MYRTFM</strong>. Tous droits reservés
 				</div>
 			</div>
 		</footer>
