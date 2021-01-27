@@ -1,0 +1,2 @@
+#!/bin/sh
+rsync -av ./ -e "ssh -p 65002" u268612510@185.201.11.128:"~/domains/myrtfm.com/public_html" --exclude-from=.gitignore --exclude=".*"
