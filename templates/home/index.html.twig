@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MYRTFM
+{% block title %}RTFM
 {% endblock %}
 
 {% block body %}
@@ -9,14 +9,38 @@
 	<section id="intro">
 		<div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
 			<h1 class="mb-4 pb-0">
-				<span>MYRTFM</span>,<br>
-				Votre radio à porté de main</h1>
-			<p class="mb-4 pb-0">Reçevez toute l'actualité d'ici et d'ailleurs en un click.</p>
-			<a href="https://player.cloud.wowza.com/hosted/p2rjg22k/player.html" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
-			{# <a href="#about" class="about-btn scrollto">About The Event</a> #}
+				<span>RTFM</span>,<br>
+				Votre télé et radio à portée de main</h1>
+			<p class="mb-4 pb-0">Reçevez toute l'actualité d'ici et d'ailleurs en un clic.</p>
+			{# <a href="https://player.cloud.wowza.com/hosted/p2rjg22k/player.html" class="venobox play-btn mb-2" data-vbtype="video" data-autoplay="true"></a>
+			<p>toto</p> #}
+			<span class="text-white mb-2">RTFM 88.5 mhz BKO</span>
+			<audio src="http://185.41.154.86:8008/;stream.nsv&type=mp3" controls class="mb-2"></audio>
+			<span class="text-white mb-2">Tropic FM 91.7 mhz Kayes</span>
+			<audio src="http://185.41.154.86:8022/;stream.nsv&type=mp3" controls></audio>
 		</div>
 	</section>
 	<!-- End Intro Section -->
+
+	<!-- ======= Facebook Section ======= -->
+    <section id="about">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h2 style="text-align:center;">NOTRE PAGE FACEBOOK</h2>
+						{# <div id="fb-root"></div> #}
+						<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v4.0&appId=764677250356285&autoLogAppEvents=1"></script>
+						<div class="fb-page" data-href="https://www.facebook.com/Rtfm-847205138774229/?epa=SEARCH_BOX" data-tabs="timeline" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" style="display:flex;justify-content:center;">
+						</div>
+          </div>
+					<div class="text-center">
+					<a href="https://www.facebook.com/Rtfm-847205138774229/?epa=SEARCH_BOX" class="facebook">
+					<i class="fa fa-facebook"></i>
+					</a>
+					</div>
+        </div>
+      </div>
+    </section><!-- End facebook Section -->
 
 	<main
 		id="main">
@@ -102,8 +126,8 @@
 					<div class="col-lg-6 venue-info">
 						<div class="row justify-content-center">
 							<div class="col-11 col-lg-8">
-								<h3>MYRTFM</h3>
-								<p>Nous sommes ouverts 6jours sur 7. Passez prendre l'antenne, nous serons ravis de vous recevoir...</p>
+								<h3>RTFM</h3>
+								<p>Nous sommes ouverts 7 jours sur 7. Passez prendre l'antenne, nous serons ravis de vous recevoir...</p>
 							</div>
 						</div>
 					</div>
@@ -130,7 +154,7 @@
 								<div class="hotel">
 									<div class="hotel-img">
 										<a href="{{path('economie_show', {id: economie.id})}}">
-											<img src="{{ asset('uploads/images/economies/' ~ economie.image) }}" alt="{{economie.title}}" class="img-fluid">
+											<img src="{{ asset('uploads/images/economies/' ~ economie.image) }}" alt="{{economie.title}}" class="img-fluid width100">
 										</a>
 									</div>
 									<h3>
@@ -239,7 +263,7 @@
 							<i class="ion-ios-telephone-outline"></i>
 							<h3>Téléphone</h3>
 							<p>
-								<a href="tel:+22300000000">+223 00 00 00 00</a>
+								<a href="tel:+22376433040">20 71 28 28 | 20 71 29 29 | 76 43 30 40</a>
 							</p>
 						</div>
 					</div>
@@ -249,7 +273,7 @@
 							<i class="ion-ios-email-outline"></i>
 							<h3>Email</h3>
 							<p>
-								<a href="mailto:myrtfm@email.com">myrtfm@email.com</a>
+								<a href="mailto:mamadoudiadiesacko@gmail.com">mamadoudiadiesacko@gmail.com</a>
 							</p>
 						</div>
 					</div>
@@ -257,32 +281,27 @@
 				</div>
 
 				<div class="form">
-					<form method="post" role="form" class="php-email-form">
+					<form method="post">
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
+								<input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" />
 								<div class="validate"></div>
 							</div>
 							<div class="form-group col-md-6">
-								<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"/>
+								<input type="email" class="form-control" name="email" id="email" placeholder="Votre adresse email" />
 								<div class="validate"></div>
 							</div>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject"/>
+							<input type="text" class="form-control" name="subject" id="subject" placeholder="Objet" />
 							<div class="validate"></div>
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+							<textarea class="form-control" name="message" rows="5" placeholder="Votre message"></textarea>
 							<div class="validate"></div>
 						</div>
-						<div class="mb-3">
-							<div class="loading">Loading</div>
-							<div class="error-message"></div>
-							<div class="sent-message">Your message has been sent. Thank you!</div>
-						</div>
 						<div class="text-center">
-							<button type="submit">Send Message</button>
+							<button type="submit">Envoyer</button>
 						</div>
 					</form>
 				</div>
